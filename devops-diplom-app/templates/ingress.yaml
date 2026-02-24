@@ -4,15 +4,9 @@ kind: Ingress
 metadata:
   name: {{ include "devops-diplom-app.fullname" . }}
   labels:
-    {{- include "devops-diplom-app.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    app: nginx
 spec:
-  {{- with .Values.ingress.className }}
-  ingressClassName: {{ . }}
-  {{- end }}
+  ingressClassName: nginx
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
@@ -25,7 +19,6 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
       http:
         paths:
           {{- range .paths }}
