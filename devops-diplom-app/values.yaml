@@ -16,8 +16,7 @@ service:
 ingress:
   enabled: true
   hosts:
-    - host: ""
-      paths:
-        - path: /devops-diplom-app
-          pathType: ImplementationSpecific
+    - paths:
+      - path: /devops-diplom-app
+        pathType: ImplementationSpecific
   tls: []
